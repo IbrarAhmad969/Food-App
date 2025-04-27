@@ -1,16 +1,24 @@
 import React, { useContext, useEffect } from "react";
 import { IoFastFoodOutline, IoSearch } from "react-icons/io5";
-import { FaBagShopping } from "react-icons/fa6";
+import { LuShoppingCart } from "react-icons/lu";
+
 import DataContext from "../context/DataContext";
 import { food_items } from "../food";
+import { useSelector } from "react-redux";
 
 function NavBar() {
+
     let {input, setInput, newCategory, setNewCategory, showCart, setShowCart} = useContext(DataContext)
 
     useEffect(()=>{
         let newListData = food_items.filter((item)=>item.food_name.includes(input) || item.food_name.toLocaleLowerCase().includes(input))
         setNewCategory(newListData)
     }, [input])
+
+    let items = useSelector(state=> state.cart)
+    
+
+
   return (
     <header className="w-full bg-slate-200/60 backdrop-blur-sm">
       <nav className="max-w-6xl mx-auto flex items-center justify-between p-4 sm:p-6">
@@ -19,7 +27,7 @@ function NavBar() {
           aria-label="Home"
           className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-md bg-white shadow"
         >
-          <IoFastFoodOutline className="h-6 w-6 sm:h-7 sm:w-7 text-green-500" />
+          <IoFastFoodOutline className="h-6 w-6 sm:h-7 sm:w-7 text-green-500 hover:cursor-pointer" />
         </a>
 
         {/* Search */}
@@ -45,9 +53,9 @@ function NavBar() {
           onClick={()=>{setShowCart(true)}}
         >
           <span className="absolute -top-1 -right-1 rounded-full bg-green-500 px-[6px] text-[10px] font-bold text-white">
-            0
+            {items.length}
           </span>
-          <FaBagShopping className="h-6 w-6 sm:h-7 sm:w-7 text-green-500 " />
+          <LuShoppingCart className="h-6 w-6 sm:h-7 sm:w-7 text-green-500 " />
         </button>
       </nav>
 
