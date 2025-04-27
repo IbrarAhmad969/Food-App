@@ -7,11 +7,18 @@ const DataContextProvider = ({children}) => {
 
   let [input, setInput] = useState("")
 
+  const[showCart, setShowCart] = useState(false)
+
+
   let data={
     input, 
     setInput, 
     newCategory, 
-    setNewCategory
+    setNewCategory,
+
+    showCart, 
+    setShowCart,
+    
 
   }
   return (

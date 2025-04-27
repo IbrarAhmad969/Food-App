@@ -5,7 +5,7 @@ import DataContext from "../context/DataContext";
 import { food_items } from "../food";
 
 function NavBar() {
-    let {input, setInput, newCategory, setNewCategory} = useContext(DataContext)
+    let {input, setInput, newCategory, setNewCategory, showCart, setShowCart} = useContext(DataContext)
 
     useEffect(()=>{
         let newListData = food_items.filter((item)=>item.food_name.includes(input) || item.food_name.toLocaleLowerCase().includes(input))
@@ -41,12 +41,13 @@ function NavBar() {
         {/* Cart */}
         <button
           aria-label="Cart"
-          className="relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-md bg-white shadow"
+          className="relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-md bg-white shadow hover: cursor-pointer"
+          onClick={()=>{setShowCart(true)}}
         >
           <span className="absolute -top-1 -right-1 rounded-full bg-green-500 px-[6px] text-[10px] font-bold text-white">
             0
           </span>
-          <FaBagShopping className="h-6 w-6 sm:h-7 sm:w-7 text-green-500" />
+          <FaBagShopping className="h-6 w-6 sm:h-7 sm:w-7 text-green-500 " />
         </button>
       </nav>
 
