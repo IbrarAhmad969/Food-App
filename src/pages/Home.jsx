@@ -56,7 +56,7 @@ const Home = () => {
         ))}
       </div>
 
-      <div className="w-full max-w-6xl flex flex-wrap justify-center gap-2 sm:gap-5 p-4">
+      <div className="w-full max-w-6xl flex flex-wrap justify-center gap-4 sm:gap-6">
         {newCategory.length > 1 ? (
           newCategory.map((item) => (
             <Card
